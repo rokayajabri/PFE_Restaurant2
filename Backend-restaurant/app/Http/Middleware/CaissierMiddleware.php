@@ -15,6 +15,9 @@ class CaissierMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if ($request->user()->roles()->where('name', 'caissier')->exists()) {
+            return $next($request);
+        }
         if (auth()->check() && auth()->user()->role === 'Caissier') {
             return $next($request);
         }

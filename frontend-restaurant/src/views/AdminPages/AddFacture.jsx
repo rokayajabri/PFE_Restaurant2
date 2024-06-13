@@ -22,7 +22,7 @@ const AddFacture = () => {
                     'Content-Type': 'application/json',
                 };
                 setLoading(true);
-                const response = await axios.get('http://127.0.0.1:8000/api/commandes', { headers });
+                const response = await axios.get('http://127.0.0.1:8001/api/commandes', { headers });
                 setCommandes(response.data);
                 setLoading(false);
             } catch (error) {
@@ -57,7 +57,7 @@ const AddFacture = () => {
             };
 
             setLoading(true);
-            await axios.post('http://127.0.0.1:8000/api/add_facture', formData, { headers });
+            await axios.post('http://127.0.0.1:8001/api/add_facture', formData, { headers });
             console.log('Facture ajoutée avec succès !');
             navigate("/factures");
         } catch (error) {

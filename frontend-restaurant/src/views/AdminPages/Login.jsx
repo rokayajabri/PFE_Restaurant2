@@ -18,7 +18,7 @@ const Login = () => {
     
     const login = async (email, password) => {
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/login", {
+            const response = await axios.post("http://127.0.0.1:8001/api/login", {
                 email,
                 password,
             });
@@ -53,19 +53,19 @@ const Login = () => {
             await login(formData.email, formData.password);
             const userData = JSON.parse(localStorage.getItem("user"));
             console.log(userData);
-            if(userData.role[0].role_name === 'admin'){
+            if(userData.role === 'admin'){
                 navigate("/adminDashboard");
             }
-            else if(userData.role[0].role_name === 'Cuisinier'){
+            else if(userData.role === 'cuisinier'){
                 navigate("/cuisinierDashboard");
             }
-            else if(userData.role[0].role_name === 'Serveur'){
+            else if(userData.role === 'serveur'){
                 navigate("/serveurDashboard");
             }
-            else if(userData.role[0].role_name === 'Gerant'){
+            else if(userData.role === 'gerant'){
                 navigate("/gerantDashboard");
             }
-            else if(userData.role[0].role_name === 'Caissier'){
+            else if(userData.role === 'caissier'){
                 navigate("/caissierDashboard");
             }else{
                 navigate("/");
@@ -77,6 +77,7 @@ const Login = () => {
     };
 
     const handleChange = (e) => {
+        console.log(e.target.value);
         setFormData({
             ...formData,
             [e.target.id]: e.target.value
@@ -95,7 +96,7 @@ const Login = () => {
                         <form onSubmit={onSubmit}>
                             <div data-mdb-input-init className="form-outline mb-4">
                                 <input
-                                    type="email"
+                                    type="text"
                                     id="email"
                                     className="form-control form-control-lg"
                                     placeholder="Enter a valid email address"

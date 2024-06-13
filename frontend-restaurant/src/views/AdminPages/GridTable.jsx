@@ -15,7 +15,7 @@ const GridTable = () => {
             };
 
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/tables', { headers });
+                const response = await axios.get('http://127.0.0.1:8001/api/tables', { headers });
                 setTables(response.data);
             } catch (error) {
                 console.error('Error fetching tables:', error);
@@ -40,7 +40,7 @@ const GridTable = () => {
             };
 
             try {
-                const response = await axios.put(`http://127.0.0.1:8000/api/edit_tables/${selectedTable.id}`, updatedTable, { headers });
+                const response = await axios.put(`http://127.0.0.1:8001/api/edit_tables/${selectedTable.id}`, updatedTable, { headers });
                 setTables(tables.map(table => (table.id === selectedTable.id ? response.data : table)));
                 setSelectedTable(null);
                 console.log('Table updated successfully:', response.data);

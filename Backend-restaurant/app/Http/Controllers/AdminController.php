@@ -10,7 +10,16 @@ class AdminController extends Controller
 {
     public function index()
     {
+        // Get all users with selected fields
         $users = User::select('id', 'name', 'email', 'address', 'age', 'gender', 'statut', 'phone', 'image')->get();
+
+        // Add role names to each user
+        $users->transform(function ($user) {
+            // Get role names as string
+            $roles = $user->roles->pluck('name')->implode(',');
+            $user['role'] = $roles;
+            return $user;
+        });
 
         return response()->json($users);
     }

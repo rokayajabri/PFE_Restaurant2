@@ -25,7 +25,7 @@ const EditCompositionProduit = () => {
                 };
 
                 setLoading(true);
-                const responseComposition = await axios.get(`http://127.0.0.1:8000/api/show_compositions/${id}`, { headers });
+                const responseComposition = await axios.get(`http://127.0.0.1:8001/api/show_compositions/${id}`, { headers });
                 const composition = responseComposition.data;
                 setFormData({
                     id_Produit: composition.produit.id,
@@ -34,10 +34,10 @@ const EditCompositionProduit = () => {
                 });
                 setSelectedUnit(composition.ingredient.uniteMesure);
                 
-                const responseProduits = await axios.get('http://127.0.0.1:8000/api/produits', { headers });
+                const responseProduits = await axios.get('http://127.0.0.1:8001/api/produits', { headers });
                 setProduits(responseProduits.data);
 
-                const responseIngredients = await axios.get('http://127.0.0.1:8000/api/ingredients', { headers });
+                const responseIngredients = await axios.get('http://127.0.0.1:8001/api/ingredients', { headers });
                 setIngredients(responseIngredients.data);
 
                 setLoading(false);
@@ -68,7 +68,7 @@ const EditCompositionProduit = () => {
             };
 
             setLoading(true);
-            await axios.put(`http://127.0.0.1:8000/api/edit_compositions/${id}`, formData, { headers });
+            await axios.put(`http://127.0.0.1:8001/api/edit_compositions/${id}`, formData, { headers });
             console.log('Composition updated successfully!');
             navigate("/compositions");
             setLoading(false);

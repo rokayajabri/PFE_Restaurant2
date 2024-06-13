@@ -16,7 +16,7 @@ const AllCompositionProduit = () => {
             };
     
             setLoading(true);
-            const response = await axios.get('http://127.0.0.1:8000/api/compositions', { headers });
+            const response = await axios.get('http://127.0.0.1:8001/api/compositions', { headers });
             setCompositions(response.data);
             setLoading(false);
         } catch (error) {
@@ -39,7 +39,7 @@ const AllCompositionProduit = () => {
                 };
         
                 setLoading(true);
-                await axios.delete(`http://127.0.0.1:8000/api/delete_compositions/${id}`, { headers });
+                await axios.delete(`http://127.0.0.1:8001/api/delete_compositions/${id}`, { headers });
                 setCompositions(compositions.filter(comp => comp.id !== id));
                 setLoading(false);
             } catch (error) {
@@ -63,7 +63,7 @@ const AllCompositionProduit = () => {
             };
     
             setLoading(true);
-            const response = await axios.get(`http://127.0.0.1:8000/api/recherche_composition?q=${searchTerm}`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8001/api/recherche_composition?q=${searchTerm}`, { headers });
             setCompositions(response.data);
             setLoading(false);
         } catch (error) {

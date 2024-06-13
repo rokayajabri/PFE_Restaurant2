@@ -22,8 +22,8 @@ const AllUser = () => {
 
             // Set loading state
             setLoading(true);
-            const response = await axios.get("http://127.0.0.1:8000/api/users", { headers });
-            console.log(response)
+            const response = await axios.get("http://127.0.0.1:8001/api/users", { headers });
+            console.log(response.data)
             setUsers(response.data ||[]);
             // Reset loading state
             setLoading(false);
@@ -48,7 +48,7 @@ const AllUser = () => {
 
             // Set loading state
             setLoading(true);
-            await axios.delete(`http://127.0.0.1:8000/api/delete_users/${id}`, { headers });
+            await axios.delete(`http://127.0.0.1:8001/api/delete_users/${id}`, { headers });
 
             // Mettre à jour l'état produits en supprimant le produit avec l'ID spécifié
             setUsers(users.filter(user => user.id !== id));
@@ -84,7 +84,7 @@ const AllUser = () => {
 
             // Set loading state
             setLoading(true);
-            const response = await axios.get(`http://127.0.0.1:8000/api/recherche_user?q=${searchTerm}`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8001/api/recherche_user?q=${searchTerm}`, { headers });
 
             // Mettre à jour l'état produits avec les résultats de la recherche
             setUsers(response.data|| []);
@@ -163,13 +163,13 @@ const AllUser = () => {
                                     <tr key={user.id}>
                                         <td>{user.id}</td>
                                         <td>
-                                            <img src={`http://127.0.0.1:8000${user.image}`} alt={user.name} className="avatar-sm rounded-circle me-2" />
+                                            <img src={`http://127.0.0.1:8001${user.image}`} alt={user.name} className="avatar-sm rounded-circle me-2" />
                                         </td>
 
                                         <td>{user.name}</td>
                                         <td>{user.email}</td>
                                         <td>{user.address}</td>
-                                        <td>{user.role[0].role_name}</td>
+                                        <td>{user.role}</td>
                                         <td>{user.age}</td>
                                         <td>{user.gender}</td>
                                         <td>{user.statut}</td>

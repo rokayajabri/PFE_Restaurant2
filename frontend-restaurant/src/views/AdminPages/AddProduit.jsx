@@ -44,8 +44,8 @@ const AddProduit = () => {
 
                 setLoading(true);
                 const [categoriesResponse, ingredientsResponse] = await Promise.all([
-                    axios.get('http://127.0.0.1:8000/api/categories', { headers }),
-                    axios.get('http://127.0.0.1:8000/api/ingredients', { headers })
+                    axios.get('http://127.0.0.1:8001/api/categories', { headers }),
+                    axios.get('http://127.0.0.1:8001/api/ingredients', { headers })
                 ]);
 
                 setCategories(categoriesResponse.data);
@@ -113,7 +113,7 @@ const AddProduit = () => {
             data.append('ingredients', JSON.stringify(selectedIngredients));
 
             setLoading(true);
-            await axios.post('http://127.0.0.1:8000/api/add_produit', data, { headers });
+            await axios.post('http://127.0.0.1:8001/api/add_produit', data, { headers });
             console.log('Produit ajouté avec succès !');
             navigate("/allProduit");
         } catch (error) {

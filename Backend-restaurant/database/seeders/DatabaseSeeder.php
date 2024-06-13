@@ -14,24 +14,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         \App\Models\User::factory(4)->create();
+         $adminRole = Role::firstOrCreate(['name' => 'admin']);
+         $gerantRole = Role::firstOrCreate(['name' => 'gerant']);
+         $caissierRole = Role::firstOrCreate(['name' => 'caissier']);
+         $serveurRole = Role::firstOrCreate(['name' => 'serveur']);
+         $cuisinierRole = Role::firstOrCreate(['name' => 'cuisinier']);
+ 
+         $admin = User::create([
+             'name' => 'rokaya',
+             'email' => 'rokaya@gmail.com',
+             'password' => bcrypt('12345678'),
+         ]);
+         $admin->assignRole($adminRole);
+ 
          \App\Models\Table::factory(10)->create();
          \App\Models\Categorie::factory(5)->create();
          \App\Models\Ingredient::factory(25)->create();
          \App\Models\Produit::factory(15)->create();
          \App\Models\CompositionProduit::factory(10)->create();
-
-
-         $adminRole = Role::firstOrCreate(['name' => 'Admin']);
-
-         // Create a specific user
-         $user = User::create([
-             'name' => 'rokaya',
-             'email' => 'rokaya@gmail.com',
-             'password' => bcrypt('12345678'), // or Hash::make('12345678')
-         ]);
-
-         // Assign the 'admin' role to the user using Spatie's method
-         $user->assignRole($adminRole);
+        //  User::factory(4)->create();
+ 
     }
 }

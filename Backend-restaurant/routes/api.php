@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/login', [AuthController::class, 'login']);
-
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 // Routes pour les administrateurs
 Route::middleware('auth:sanctum', 'admin')->group(function () {
 
@@ -88,7 +88,6 @@ Route::middleware('auth:sanctum', 'caissier')->group(function () {
 
 
 Route::middleware(['auth:sanctum', 'roles:Gerant,Caissier,Admin,Serveur,Cuisinier'])->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
 
 
     Route::get('/users/serveurs', [AdminController::class, 'serveurs']);

@@ -15,7 +15,8 @@ class ServeurMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->role === 'Serveur') {
+        if ($request->user()->roles()->where('name', 'serveur')->exists()) {
+            // User has the "admin" role, allow access
             return $next($request);
         }
 

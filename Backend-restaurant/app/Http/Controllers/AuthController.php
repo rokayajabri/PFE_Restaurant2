@@ -21,12 +21,7 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
         // Récupérer les rôles et les permissions
-        $roles = $user->roles->map(function ($role) {
-            return [
-                'role_id' => $role->id,
-                'role_name' => $role->name,
-            ];
-        });
+        $roles = $user->roles->pluck('name')->implode(',');
 
         return response()->json([
             'access_token' => $token,

@@ -30,7 +30,7 @@ const EditFacture = () => {
                 // Set loading state
                 setLoading(true);
 
-                const response = await axios.get(`http://127.0.0.1:8000/api/factures/${id}`,{headers}); 
+                const response = await axios.get(`http://127.0.0.1:8001/api/factures/${id}`,{headers}); 
                 const factureData = response.data;
                 setFormData({
                     id_Commande: factureData.id_Commande,
@@ -56,7 +56,7 @@ const EditFacture = () => {
     
             // Set loading state
                 setLoading(true);
-                const response = await axios.get('http://127.0.0.1:8000/api/commandes',{headers});
+                const response = await axios.get('http://127.0.0.1:8001/api/commandes',{headers});
                 setCommandes(response.data);
 
                 setLoading(false);
@@ -96,7 +96,7 @@ const EditFacture = () => {
             // Set loading state
             setLoading(true);
 
-            await axios.put(`http://127.0.0.1:8000/api/edit_facture/${id}`, formData,{headers}); // Envoyer une requête PUT pour mettre à jour les détails du produit
+            await axios.put(`http://127.0.0.1:8001/api/edit_facture/${id}`, formData,{headers}); // Envoyer une requête PUT pour mettre à jour les détails du produit
             console.log('Facture mis à jour avec succès !');
             navigate("/factures");
             setLoading(false);

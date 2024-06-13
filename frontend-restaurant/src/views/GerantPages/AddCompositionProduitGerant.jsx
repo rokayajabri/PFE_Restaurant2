@@ -23,9 +23,9 @@ const AddCompositionProduitGerant = () => {
                     'Content-Type': 'application/json',
                 };
                 setLoading(true);
-                const responseProduits = await axios.get('http://127.0.0.1:8000/api/produits', { headers });
+                const responseProduits = await axios.get('http://127.0.0.1:8001/api/produits', { headers });
                 setProduits(responseProduits.data);
-                const responseIngredients = await axios.get('http://127.0.0.1:8000/api/ingredients', { headers });
+                const responseIngredients = await axios.get('http://127.0.0.1:8001/api/ingredients', { headers });
                 setIngredients(responseIngredients.data);
                 setLoading(false);
             } catch (error) {
@@ -54,7 +54,7 @@ const AddCompositionProduitGerant = () => {
                 'Content-Type': 'application/json',
             };
             setLoading(true);
-            await axios.post('http://127.0.0.1:8000/api/add_composition', formData, { headers });
+            await axios.post('http://127.0.0.1:8001/api/add_composition', formData, { headers });
             console.log('Composition ajoutée avec succès !');
             navigate("/compositions");
             setLoading(false);

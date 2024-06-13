@@ -15,7 +15,7 @@ class GerantMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->role === 'Gerant') {
+        if ($request->user()->roles()->where('name', 'gerant')->exists()) {
             return $next($request);
         }
 

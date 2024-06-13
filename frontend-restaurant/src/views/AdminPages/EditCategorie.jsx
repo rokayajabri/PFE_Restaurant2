@@ -35,7 +35,7 @@ const EditCategory = () => {
 
                 // Set loading state
                 setLoading(true);
-                const response = await axios.get(`http://127.0.0.1:8000/api/categories/${id}`, { headers }); // Récupère les détails de la catégorie à modifier
+                const response = await axios.get(`http://127.0.0.1:8001/api/categories/${id}`, { headers }); // Récupère les détails de la catégorie à modifier
                 const categoryData = response.data;
                 setFormData({
                     nom: categoryData.nom,
@@ -92,7 +92,7 @@ const EditCategory = () => {
             }
 
             setLoading(true);
-            await axios.put(`http://127.0.0.1:8000/api/edit_categories/${id}`, data, { headers });
+            await axios.put(`http://127.0.0.1:8001/api/edit_categories/${id}`, data, { headers });
             console.log('edit categ successfull!');
             navigate("/allCategory");
             setLoading(false);
@@ -138,7 +138,7 @@ const EditCategory = () => {
                         </Typography>
                         {currentImage && !previewImage && (
                             <div>
-                                <img src={`http://127.0.0.1:8000/${currentImage}`} alt="Current" width="100" />
+                                <img src={`http://127.0.0.1:8001/${currentImage}`} alt="Current" width="100" />
                             </div>
                         )}
                         {previewImage && (

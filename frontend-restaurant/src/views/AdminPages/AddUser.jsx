@@ -40,7 +40,7 @@ const AddUser = () => {
 
             // Set loading state
             setLoading(true);
-            await axios.post('http://127.0.0.1:8000/api/register', form, { headers });
+            await axios.post('http://127.0.0.1:8001/api/register', form, { headers });
             console.log('User ajouté avec succès !');
             navigate("/allUser");
         } catch (error) {

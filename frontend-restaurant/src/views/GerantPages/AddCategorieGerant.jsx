@@ -46,7 +46,7 @@ const AddCategoryGerent = () => {
             }
 
             setLoading(true);
-            await axios.post('http://127.0.0.1:8000/api/add_categories', data, { headers });
+            await axios.post('http://127.0.0.1:8001/api/add_categories', data, { headers });
             console.log('Catégorie ajoutée avec succès !');
             navigate("/allCategoryGerent");
             setFormData({

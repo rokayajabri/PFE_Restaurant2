@@ -43,7 +43,7 @@ const EditSupplier = () => {
                 };
 
                 setLoading(true);
-                const response = await axios.get(`http://127.0.0.1:8000/api/suppliers/${id}`, { headers });
+                const response = await axios.get(`http://127.0.0.1:8001/api/suppliers/${id}`, { headers });
                 const supplier = response.data;
 
                 setFormData({
@@ -81,7 +81,7 @@ const EditSupplier = () => {
             };
     
             setLoading(true);
-            await axios.put(`http://127.0.0.1:8000/api/edit_supplier/${id}`, formData, { headers });
+            await axios.put(`http://127.0.0.1:8001/api/edit_supplier/${id}`, formData, { headers });
             console.log('Supplier updated successfully!');
             navigate("/allSuppliers");
         } catch (error) {

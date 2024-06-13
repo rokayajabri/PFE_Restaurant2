@@ -22,11 +22,11 @@ const AllProduitCuisinier = () => {
             // Set loading state
             setLoading(true);
     
-            const response = await axios.get('http://127.0.0.1:8000/api/produits', { headers });
+            const response = await axios.get('http://127.0.0.1:8001/api/produits', { headers });
             
             setProduits(response.data);
     
-            const categoriesResponse = await axios.get('http://127.0.0.1:8000/api/categories', { headers });
+            const categoriesResponse = await axios.get('http://127.0.0.1:8001/api/categories', { headers });
             
             setCategories(categoriesResponse.data);
             // Reset loading state
@@ -51,7 +51,7 @@ const AllProduitCuisinier = () => {
             };
 
             setLoading(true);
-            const response = await axios.get(`http://127.0.0.1:8000/api/recherche_produit?q=${e.target.value}`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8001/api/recherche_produit?q=${e.target.value}`, { headers });
             setProduits(response.data);
             setLoading(false);
         } catch (error) {
@@ -89,7 +89,7 @@ const AllProduitCuisinier = () => {
                             <div key={produit.id} className="card">
                                 
                                 <div className="image-container">
-                                    <img src={`http://127.0.0.1:8000/${produit.image}`} alt={produit.nom} />
+                                    <img src={`http://127.0.0.1:8001/${produit.image}`} alt={produit.nom} />
                                     <h3 className="card-title">{produit.nom}</h3>
                                 </div>
                                 <div className="card-content">

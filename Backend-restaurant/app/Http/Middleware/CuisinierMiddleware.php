@@ -15,6 +15,9 @@ class CuisinierMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if ($request->user()->roles()->where('name', 'cuisinier')->exists()) {
+            return $next($request);
+        }
         if (auth()->check() && auth()->user()->role === 'Cuisinier') {
             return $next($request);
         }

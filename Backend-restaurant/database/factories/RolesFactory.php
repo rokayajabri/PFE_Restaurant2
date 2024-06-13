@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+use Spatie\Permission\Models\Role;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
@@ -14,14 +15,14 @@ class RolesFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
-        // Nous pouvons utiliser un tableau pour stocker les noms des rôles
-        $roles = ['Admin', 'Gerant', 'Caissier', 'Serveur', 'Cuisinier'];
 
+    public function definition()
+    {
         return [
-            // Assigner un rôle aléatoire depuis le tableau
-            'name' => $this->faker->unique()->randomElement($roles),
+            'name' => $this->faker->unique()->randomElement(['Gerant', 'Caissier', 'Serveur', 'Cuisinier']),
+            'guard_name' => 'web', 
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

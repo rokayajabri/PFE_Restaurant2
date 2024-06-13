@@ -43,8 +43,8 @@ const EditIngredient = () => {
                 };
 
                 const [ingredientResponse, suppliersResponse] = await Promise.all([
-                    axios.get(`http://127.0.0.1:8000/api/ingredients/${id}`, { headers }),
-                    axios.get('http://127.0.0.1:8000/api/suppliers', { headers })
+                    axios.get(`http://127.0.0.1:8001/api/ingredients/${id}`, { headers }),
+                    axios.get('http://127.0.0.1:8001/api/suppliers', { headers })
                 ]);
 
                 setFormData(ingredientResponse.data);
@@ -76,7 +76,7 @@ const EditIngredient = () => {
             };
 
             setLoading(true);
-            await axios.put(`http://127.0.0.1:8000/api/edit_ingredients/${id}`, formData, { headers });
+            await axios.put(`http://127.0.0.1:8001/api/edit_ingredients/${id}`, formData, { headers });
             console.log('Ingredient updated successfully!');
             setLoading(false);
             navigate("/allIngredient");
