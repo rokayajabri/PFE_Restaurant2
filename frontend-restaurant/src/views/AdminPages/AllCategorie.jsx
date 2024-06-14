@@ -21,7 +21,7 @@ const AllCategorie = () => {
 
             // Set loading state
             setLoading(true);
-            const response = await axios.get('http://127.0.0.1:8001/api/categories', { headers });
+            const response = await axios.get('http://127.0.0.1:8000/api/categories', { headers });
             setCategories(response.data);
             // Reset loading state
             setLoading(false);
@@ -46,7 +46,7 @@ const AllCategorie = () => {
 
             // Set loading state
             setLoading(true);
-            await axios.delete(`http://127.0.0.1:8001/api/delete_categories/${id}`, { headers });
+            await axios.delete(`http://127.0.0.1:8000/api/delete_categories/${id}`, { headers });
 
             // Mettre à jour l'état categories en supprimant la catégorie avec l'ID spécifié
             setCategories(categories.filter(category => category.id !== id));
@@ -74,7 +74,7 @@ const AllCategorie = () => {
             };
 
             setLoading(true);
-            const response = await axios.get(`http://127.0.0.1:8001/api/recherche_categorie?q=${e.target.value}`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8000/api/recherche_categorie?q=${e.target.value}`, { headers });
             setCategories(response.data);
             setLoading(false);
         } catch (error) {
@@ -118,7 +118,7 @@ const AllCategorie = () => {
                        <div key={category.id} className="card">
                            
                            <div className="image-container">
-                               <img src={`http://127.0.0.1:8001/${category.image}`} alt={category.nom} />
+                               <img src={`http://127.0.0.1:8000/${category.image}`} alt={category.nom} />
                                <h3 className="card-title">{category.nom}</h3>
                            </div>
                            <div className="card-content">

@@ -36,7 +36,7 @@ function AllSupplier() {
 
         // Set loading state
         setLoading(true);
-        axios.get('http://127.0.0.1:8001/api/suppliers', { headers })
+        axios.get('http://127.0.0.1:8000/api/suppliers', { headers })
             .then(response => {
                 setSuppliers(response.data);
                 setLoading(false);
@@ -59,7 +59,7 @@ function AllSupplier() {
 
             // Set loading state
             setLoading(true);
-            await axios.delete(`http://127.0.0.1:8001/api/delete_supplier/${id}`, { headers });
+            await axios.delete(`http://127.0.0.1:8000/api/delete_supplier/${id}`, { headers });
 
             // Mettre à jour l'état fournisseurs en supprimant le fournisseur avec l'ID spécifié
             setSuppliers(suppliers.filter(supplier => supplier.id !== id));
@@ -94,7 +94,7 @@ function AllSupplier() {
     
             // Set loading state
             setLoading(true);
-            const response = await axios.get(`http://127.0.0.1:8001/api/recherche_supplier?q=${searchTerm}`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8000/api/recherche_supplier?q=${searchTerm}`, { headers });
             
             // Mettre à jour l'état fournisseurs avec les résultats de la recherche
             setSuppliers(response.data);

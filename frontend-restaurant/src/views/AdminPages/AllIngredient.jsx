@@ -20,7 +20,7 @@ function AllIngredient() {
 
         // Set loading state
         setLoading(true);
-        axios.get('http://127.0.0.1:8001/api/ingredients', { headers })
+        axios.get('http://127.0.0.1:8000/api/ingredients', { headers })
             .then(response => {
                 setIngredients(response.data);
                 setLoading(false);
@@ -43,7 +43,7 @@ function AllIngredient() {
 
             // Set loading state
             setLoading(true);
-            await axios.delete(`http://127.0.0.1:8001/api/delete_ingredients/${id}`, { headers });
+            await axios.delete(`http://127.0.0.1:8000/api/delete_ingredients/${id}`, { headers });
 
             // Mettre à jour l'état produits en supprimant le produit avec l'ID spécifié
             setIngredients(ingredients.filter(ingredient => ingredient.id !== id));
@@ -78,7 +78,7 @@ function AllIngredient() {
  
             // Set loading state
             setLoading(true);
-            const response = await axios.get(`http://127.0.0.1:8001/api/recherche_ingredient?q=${searchTerm}`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8000/api/recherche_ingredient?q=${searchTerm}`, { headers });
          
             // Mettre à jour l'état produits avec les résultats de la recherche
             setIngredients(response.data);

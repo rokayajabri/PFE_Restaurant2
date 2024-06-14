@@ -29,11 +29,11 @@ const EditCommandeGerant = () => {
     
                 setLoading(true);
                 const [serveursRes, tablesRes, produitsRes] = await Promise.all([
-                    axios.get('http://127.0.0.1:8001/api/users/serveurs', { headers }),
-                    axios.get('http://127.0.0.1:8001/api/tables', { headers }),
-                    axios.get('http://127.0.0.1:8001/api/produits', { headers })
+                    axios.get('http://127.0.0.1:8000/api/users/serveurs', { headers }),
+                    axios.get('http://127.0.0.1:8000/api/tables', { headers }),
+                    axios.get('http://127.0.0.1:8000/api/produits', { headers })
                 ]);
-                const commandeRes = await axios.get(`http://127.0.0.1:8001/api/gerant/show_commandes/${id}`, { headers });
+                const commandeRes = await axios.get(`http://127.0.0.1:8000/api/gerant/show_commandes/${id}`, { headers });
                 setFormData(commandeRes.data);
                 setLoading(false);
 
@@ -124,7 +124,7 @@ const EditCommandeGerant = () => {
             };
             console.log('Data to send:', dataToSend); // Logging to see what is being sent
             setLoading(true);
-            await axios.put(`http://127.0.0.1:8001/api/gerant/edit_commandes/${id}`, dataToSend, { headers });
+            await axios.put(`http://127.0.0.1:8000/api/gerant/edit_commandes/${id}`, dataToSend, { headers });
             console.log('Commande updated successfully!');
             navigate("/allCommandeGerant");
             setLoading(false);

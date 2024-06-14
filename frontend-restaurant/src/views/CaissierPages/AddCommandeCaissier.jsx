@@ -54,10 +54,10 @@ const AddCommandeCaissier = () => {
             };
             setLoading(true);
             const [prodResponse, tableResponse, catResponse, serveurResponse] = await Promise.all([
-                axios.get('http://127.0.0.1:8001/api/produits', { headers }),
-                axios.get('http://127.0.0.1:8001/api/tables', { headers }),
-                axios.get('http://127.0.0.1:8001/api/categories', { headers }),
-                axios.get('http://127.0.0.1:8001/api/users/serveurs', { headers })
+                axios.get('http://127.0.0.1:8000/api/produits', { headers }),
+                axios.get('http://127.0.0.1:8000/api/tables', { headers }),
+                axios.get('http://127.0.0.1:8000/api/categories', { headers }),
+                axios.get('http://127.0.0.1:8000/api/users/serveurs', { headers })
             ]);
             setProduits(prodResponse.data);
             setTables(tableResponse.data);
@@ -144,7 +144,7 @@ const AddCommandeCaissier = () => {
 
         setLoading(true);
         try {
-            const response = await axios.post('http://127.0.0.1:8001/api/caissier/add_commandes', dataToSend, { headers });
+            const response = await axios.post('http://127.0.0.1:8000/api/caissier/add_commandes', dataToSend, { headers });
             console.log('Commande ajoutée avec succès!');
             setLoading(false);
             if (response.data.warning) {
@@ -259,7 +259,7 @@ const AddCommandeCaissier = () => {
                                                 }}
                                             >
                                                 <Box sx={{ height: 100, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                                    <img src={`http://127.0.0.1:8001/${category.image}`} alt={category.nom} style={{ maxWidth: '100%', maxHeight: '100%' }} />
+                                                    <img src={`http://127.0.0.1:8000/${category.image}`} alt={category.nom} style={{ maxWidth: '100%', maxHeight: '100%' }} />
                                                 </Box>
                                                 <Typography variant="subtitle1">{category.nom}</Typography>
                                             </Paper>
@@ -286,7 +286,7 @@ const AddCommandeCaissier = () => {
                                                 onClick={() => addDetailLine(produit)}
                                             >
                                                 <Box sx={{ height: 100, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                                    <img src={`http://127.0.0.1:8001/${produit.image}`} alt={produit.nom} style={{ maxWidth: '100%', maxHeight: '100%' }} />
+                                                    <img src={`http://127.0.0.1:8000/${produit.image}`} alt={produit.nom} style={{ maxWidth: '100%', maxHeight: '100%' }} />
                                                 </Box>
                                                 <Typography variant="subtitle1">{produit.nom}</Typography>
                                                 <Typography variant="subtitle2">{produit.prix} €</Typography>

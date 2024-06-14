@@ -36,7 +36,7 @@ const AddIngredient = () => {
                 };
 
                 setLoading(true);
-                const response = await axios.get('http://127.0.0.1:8001/api/suppliers', { headers });
+                const response = await axios.get('http://127.0.0.1:8000/api/suppliers', { headers });
                 setSuppliers(response.data);
                 setLoading(false);
             } catch (error) {
@@ -62,7 +62,7 @@ const AddIngredient = () => {
             };
 
             setLoading(true);
-            const response = await axios.post('http://127.0.0.1:8001/api/add_ingredients', formData, { headers });
+            const response = await axios.post('http://127.0.0.1:8000/api/add_ingredients', formData, { headers });
             console.log('Ingredient added:', response.data);
             setFormData({
                 nom: '',

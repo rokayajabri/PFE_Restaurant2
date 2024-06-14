@@ -15,7 +15,7 @@ const AllCategorieCuisinier = () => {
                 'Content-Type': 'application/json',
             };
             setLoading(true);
-            const response = await axios.get('http://127.0.0.1:8001/api/categories', { headers });
+            const response = await axios.get('http://127.0.0.1:8000/api/categories', { headers });
             setCategories(response.data);
             setLoading(false);
         } catch (error) {
@@ -32,7 +32,7 @@ const AllCategorieCuisinier = () => {
                 'Content-Type': 'application/json',
             };
             setLoading(true);
-            const response = await axios.get(`http://127.0.0.1:8001/api/produits?categoryId=${categoryId}`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8000/api/produits?categoryId=${categoryId}`, { headers });
             setLoading(false);
             return response.data;
         } catch (error) {
@@ -66,7 +66,7 @@ const AllCategorieCuisinier = () => {
                 'Content-Type': 'application/json',
             };
             setLoading(true);
-            const response = await axios.get(`http://127.0.0.1:8001/api/recherche_categorie?q=${searchTerm}`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8000/api/recherche_categorie?q=${searchTerm}`, { headers });
             setCategories(response.data);
             setLoading(false);
         } catch (error) {

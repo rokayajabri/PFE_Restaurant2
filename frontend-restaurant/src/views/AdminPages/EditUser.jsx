@@ -38,7 +38,7 @@ const EditUser = () => {
             }
 
             setLoading(true);
-            await axios.put(`http://127.0.0.1:8001/api/edit_users/${id}`, form, { headers });
+            await axios.put(`http://127.0.0.1:8000/api/edit_users/${id}`, form, { headers });
             console.log('User updated successfully!');
             navigate("/allUser");
         } catch (error) {

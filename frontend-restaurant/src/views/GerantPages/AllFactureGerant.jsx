@@ -21,7 +21,7 @@ const AllFactureGerant = () => {
     
             // Set loading state
             setLoading(true);
-            const response = await axios.get("http://127.0.0.1:8001/api/factures",{headers});
+            const response = await axios.get("http://127.0.0.1:8000/api/factures",{headers});
             setFactures(response.data);
             // Reset loading state
             setLoading(false);
@@ -47,7 +47,7 @@ const AllFactureGerant = () => {
         setLoading(true);
 
         // Effectuer la requête de suppression
-        await axios.delete(`http://127.0.0.1:8001/api/delete_facture/${id}`, { headers });
+        await axios.delete(`http://127.0.0.1:8000/api/delete_facture/${id}`, { headers });
 
         // Mettre à jour l'état produits en supprimant le produit avec l'ID spécifié
         setFactures(factures.filter(facture => facture.id !== id));
@@ -85,7 +85,7 @@ const AllFactureGerant = () => {
             setLoading(true);
     
             // Effectuer la requête de recherche
-            const response = await axios.get(`http://127.0.0.1:8001/api/recherche_facture?q=${searchTerm}`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8000/api/recherche_facture?q=${searchTerm}`, { headers });
     
             // Mettre à jour l'état produits avec les résultats de la recherche
             setFactures(response.data);
@@ -109,7 +109,7 @@ const AllFactureGerant = () => {
             }
             const formData = new FormData(); // Créer un objet FormData
             formData.append('file', e.target.file.files[0]); // Ajouter le fichier au formulaire
-            await axios.post('http://127.0.0.1:8001/api/facture-import', formData, { headers });
+            await axios.post('http://127.0.0.1:8000/api/facture-import', formData, { headers });
             setLoading(false);
         } catch (error) {
             console.error('Error importing factures:', error);
@@ -125,7 +125,7 @@ const AllFactureGerant = () => {
                     Authorization: `Bearer ${userData.access_token}`,
                     'Content-Type': 'application/json',
                 };
-                const response = await axios.get('http://127.0.0.1:8001/api/facture-export', {
+                const response = await axios.get('http://127.0.0.1:8000/api/facture-export', {
                     responseType: 'blob', // Indiquer que la réponse est un fichier binaire
                     headers,
                 });
@@ -154,7 +154,7 @@ const AllFactureGerant = () => {
                     Authorization: `Bearer ${userData.access_token}`,
                     'Content-Type': 'application/json',
                 };
-                const response = await axios.get(`http://127.0.0.1:8001/api/download-pdf/${factureId}`, {
+                const response = await axios.get(`http://127.0.0.1:8000/api/download-pdf/${factureId}`, {
                     responseType: 'blob', // Indique que la réponse est un fichier binaire
                     headers,
                 });

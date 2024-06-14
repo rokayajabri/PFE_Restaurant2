@@ -28,7 +28,7 @@ function EditIngredientGerant() {
                     'Content-Type': 'application/json',
                 };
 
-                const response = await axios.get(`http://127.0.0.1:8001/api/ingredients/${id}`, { headers });
+                const response = await axios.get(`http://127.0.0.1:8000/api/ingredients/${id}`, { headers });
                 setFormData(response.data);
             } catch (error) {
                 console.error('Error fetching ingredient:', error);
@@ -57,7 +57,7 @@ function EditIngredientGerant() {
             };
 
             setLoading(true);
-            await axios.put(`http://127.0.0.1:8001/api/edit_ingredients/${id}`, formData, { headers });
+            await axios.put(`http://127.0.0.1:8000/api/edit_ingredients/${id}`, formData, { headers });
             console.log('Ingredient updated successfully!');
             setLoading(false);
             navigate("/allIngredientGerent");

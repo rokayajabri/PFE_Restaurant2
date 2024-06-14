@@ -15,7 +15,7 @@ const AllCompositionProduitCuisinier = () => {
             };
     
             setLoading(true);
-            const response = await axios.get('http://127.0.0.1:8001/api/compositions', { headers });
+            const response = await axios.get('http://127.0.0.1:8000/api/compositions', { headers });
             setCompositions(response.data);
             setLoading(false);
         } catch (error) {
@@ -42,7 +42,7 @@ const AllCompositionProduitCuisinier = () => {
             };
     
             setLoading(true);
-            const response = await axios.get(`http://127.0.0.1:8001/api/recherche_composition?q=${searchTerm}`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8000/api/recherche_composition?q=${searchTerm}`, { headers });
             setCompositions(response.data);
             setLoading(false);
         } catch (error) {

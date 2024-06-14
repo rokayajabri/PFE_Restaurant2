@@ -24,7 +24,7 @@ function AddIngredientGerant() {
     
             // Set loading state
             setLoading(true);
-            const response = await axios.post('http://127.0.0.1:8001/api/add_ingredients', {
+            const response = await axios.post('http://127.0.0.1:8000/api/add_ingredients', {
                 nom,
                 quantite_Stock: quantiteStock,
                 uniteMesure,

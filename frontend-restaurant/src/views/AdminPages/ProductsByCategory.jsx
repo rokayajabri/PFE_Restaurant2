@@ -18,7 +18,7 @@ const ProductsByCategory = () => {
             };
 
             setLoading(true);
-            const response = await axios.get(`http://127.0.0.1:8001/api/categories/${id}/products`, { headers });
+            const response = await axios.get(`http://127.0.0.1:8000/api/categories/${id}/products`, { headers });
             setProducts(response.data);
             setLoading(false);
         } catch (error) {
@@ -45,7 +45,7 @@ const ProductsByCategory = () => {
                         {products.map(product => (
                             <div key={product.id} className="card">
                                 <div className="image-container">
-                                    <img src={`http://127.0.0.1:8001/${product.image}`} alt={product.nom} />
+                                    <img src={`http://127.0.0.1:8000/${product.image}`} alt={product.nom} />
                                     <h3 className="card-title">{product.nom}</h3>
                                 </div>
                                 <div className="card-content">

@@ -36,7 +36,7 @@ const AllCommande = () => {
             };
 
             setLoading(true);
-            const response = await axios.get('http://127.0.0.1:8001/api/commandes', { headers });
+            const response = await axios.get('http://127.0.0.1:8000/api/commandes', { headers });
             setCommandes(response.data);
             setLoading(false);
         } catch (error) {
@@ -59,7 +59,7 @@ const AllCommande = () => {
                 };
 
                 setLoading(true);
-                await axios.delete(`http://127.0.0.1:8001/api/delete_commandes/${id}`, { headers });
+                await axios.delete(`http://127.0.0.1:8000/api/delete_commandes/${id}`, { headers });
                 setCommandes(prevCommandes => prevCommandes.filter(commande => commande.id !== id));
                 setLoading(false);
             } catch (error) {

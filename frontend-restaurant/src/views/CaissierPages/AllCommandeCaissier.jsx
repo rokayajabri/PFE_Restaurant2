@@ -34,7 +34,7 @@ const AllCommandeCaissier = () => {
             };
 
             setLoading(true);
-            const response = await axios.get('http://127.0.0.1:8001/api/commandes', { headers });
+            const response = await axios.get('http://127.0.0.1:8000/api/commandes', { headers });
             setCommandes(response.data);
             setLoading(false);
         } catch (error) {
@@ -55,7 +55,7 @@ const AllCommandeCaissier = () => {
         };
 
         try {
-            await axios.patch(`http://127.0.0.1:8001/api/caissier/commandes/${id}/status`, { statut: newStatus }, { headers });
+            await axios.patch(`http://127.0.0.1:8000/api/caissier/commandes/${id}/status`, { statut: newStatus }, { headers });
             fetchCommandes(); // Rafraîchit la liste des commandes après la mise à jour
         } catch (error) {
             console.error('Erreur lors de la mise à jour du statut de la commande:', error);

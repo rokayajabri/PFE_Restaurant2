@@ -24,7 +24,7 @@ let SidebarData = [];
 
 if (userData) {
     switch (true) {
-        case userData.role === 'admin':
+        case userData.role[0].role_name === 'admin':
             SidebarData = [
                 {
                     title: 'Dashboards',
@@ -109,7 +109,7 @@ if (userData) {
             ];
             break;
 
-            case userData.role === 'caissier':
+            case userData.role[0].role_name === 'caissier':
             SidebarData = [
                 {
                     title: 'Dashboards',
@@ -131,7 +131,7 @@ if (userData) {
             ];
             break;
 
-            case userData.role === 'serveur':
+            case userData.role[0].role_name === 'serveur':
             SidebarData = [
                 {
                     title: 'Dashboards',
@@ -161,7 +161,7 @@ if (userData) {
             ];
             break;
 
-            case userData.role === 'cuisinier':
+            case userData.role[0].role_name === 'cuisinier':
             SidebarData = [
                 {
                     title: 'Dashboards',
@@ -200,7 +200,7 @@ if (userData) {
             break;
 
 
-            case userData.role === 'gerant':
+            case userData.role[0].role_name === 'gerant':
             SidebarData = [
                 {
                     title: 'Dashboards',

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AddUser = () => {
@@ -19,6 +19,25 @@ const AddUser = () => {
     });
     const [image, setImage] = useState(null);
     const [errors, setErrors] = useState({});
+    const [roles, setRoles] = useState([]); 
+
+    useEffect(() => {
+        const fetchRoles = async () => {
+            try {
+                const userData = JSON.parse(localStorage.getItem("user"));
+                const headers = {
+                    Authorization: `Bearer ${userData.access_token}`,
+                };
+    
+                const response = await axios.get('http://127.0.0.1:8000/api/roles', { headers });
+                setRoles(response.data); // Mettre à jour le state avec les rôles récupérés
+            } catch (error) {
+                console.error('Erreur lors du chargement des rôles :', error);
+            }
+        };
+        fetchRoles();
+    }, []);
+    
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -40,7 +59,7 @@ const AddUser = () => {
 
             // Set loading state
             setLoading(true);
-            await axios.post('http://127.0.0.1:8001/api/register', form, { headers });
+            await axios.post('http://127.0.0.1:8000/api/register', form, { headers });
             console.log('User ajouté avec succès !');
             navigate("/allUser");
         } catch (error) {
@@ -105,17 +124,15 @@ const AddUser = () => {
             </div>
 
             <div className="custom-form-group">
-                <label htmlFor="role" className="custom-form-label">Role:</label>
-                <select id="role" className="custom-form-control" value={formData.role} onChange={handleChange}>
-                    <option value="" hidden>Select a role</option>
-                    <option value="Admin">Admin</option>
-                    <option value="Gerant">Gerant</option>
-                    <option value="Cuisinier">Cuisinier</option>
-                    <option value="Serveur">Serveur</option>
-                    <option value="Caissier">Caissier</option>
-                </select>
-                {errors.role && <div className="custom-error">{errors.role}</div>}
-            </div>
+                    <label htmlFor="role" className="custom-form-label">Role:</label>
+                    <select id="role" className="custom-form-control" value={formData.role} onChange={handleChange}>
+                        <option value="" hidden>Select a role</option>
+                        {roles.map(role => (
+                            <option key={role.id} value={role.id}>{role.name}</option>
+                        ))}
+                    </select>
+                    {errors.role && <div className="custom-error">{errors.role}</div>}
+                </div>
 
             <div className="custom-form-group">
                 <label htmlFor="gender" className="custom-form-label">Gender:</label>

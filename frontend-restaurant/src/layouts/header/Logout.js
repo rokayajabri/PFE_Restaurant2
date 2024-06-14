@@ -21,7 +21,7 @@ export default function Logout() {
             // Set loading state
             setLoading(true);
     
-            await axios.post("http://127.0.0.1:8001/api/logout", null, { headers });
+            await axios.post("http://127.0.0.1:8000/api/logout", null, { headers });
     
             localStorage.removeItem('user'); // Assurez-vous que le nom du token est correctement orthographié
             navigate('/');
