@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -24,6 +25,11 @@ class AdminController extends Controller
         return response()->json($users);
     }
 
+    public function roles()
+    {
+        $roles = Role::all();
+        return response()->json($roles);
+    }
     public function serveurs()
     {
         $serveurs = User::where('role', 'serveur')->get();

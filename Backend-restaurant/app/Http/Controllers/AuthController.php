@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -39,7 +40,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'role' => 'required',
+            'role_name' => 'required|string|exists:roles,name',
             'age' => 'required',
             'address' => 'required|string|max:255',
             'gender' => 'required|string',
@@ -47,6 +48,12 @@ class AuthController extends Controller
             'statut' => 'required|string',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+         // Trouver le rôle basé sur le nom fourni
+         $role = Role::where('name', $validatedData['role_name'])->first();
+         // Vérifier si le rôle existe
+            if (!$role) {
+                return response()->json(['error' => 'Role not found'], 404);
+            }
 
         $user = User::create([
             'name' => $validatedData['name'],
@@ -74,7 +81,8 @@ class AuthController extends Controller
         // Mettre à jour les détails de l'utilisateur avec l'image (par défaut ou téléchargée)
         $user->image = $path;
         $user->save(); // Sauvegarder les modifications
-
+        // Associer l'utilisateur au rôle trouvé
+        $user->roles()->attach($role->id);
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([

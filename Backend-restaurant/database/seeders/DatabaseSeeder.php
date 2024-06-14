@@ -14,25 +14,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         $adminRole = Role::firstOrCreate(['name' => 'admin']);
-         $gerantRole = Role::firstOrCreate(['name' => 'gerant']);
-         $caissierRole = Role::firstOrCreate(['name' => 'caissier']);
-         $serveurRole = Role::firstOrCreate(['name' => 'serveur']);
-         $cuisinierRole = Role::firstOrCreate(['name' => 'cuisinier']);
- 
+         //$adminRole = Role::firstOrCreate(['name' => 'admin']);
+
+         // Créer des rôles directement
+         $roles = ['admin', 'gerant', 'caissier', 'serveur', 'cuisinier'];
+
+         foreach ($roles as $roleName) {
+             Role::firstOrCreate(['name' => $roleName, 'guard_name' => 'web']);
+         }
+
          $admin = User::create([
              'name' => 'rokaya',
              'email' => 'rokaya@gmail.com',
              'password' => bcrypt('12345678'),
          ]);
-         $admin->assignRole($adminRole);
- 
+         $admin->assignRole('admin');
+
          \App\Models\Table::factory(10)->create();
          \App\Models\Categorie::factory(5)->create();
          \App\Models\Ingredient::factory(25)->create();
          \App\Models\Produit::factory(15)->create();
+
          \App\Models\CompositionProduit::factory(10)->create();
         //  User::factory(4)->create();
- 
+
     }
 }

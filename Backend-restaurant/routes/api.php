@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum', 'admin')->group(function () {
      Route::put('/edit_users/{id}', [AdminController::class, 'update']);
      Route::delete('/delete_users/{id}', [AdminController::class, 'destroy']);
      Route::get('/recherche_user', [AdminController::class, 'search']);
+     Route::get('/roles', [AdminController::class, 'roles']);
 
 
     Route::get('/show_commandes/{id}', [CommandeController::class, 'show']);

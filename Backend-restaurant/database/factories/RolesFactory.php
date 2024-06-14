@@ -15,12 +15,13 @@ class RolesFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Role::class;
 
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->randomElement(['Gerant', 'Caissier', 'Serveur', 'Cuisinier']),
-            'guard_name' => 'web', 
+            'name' => $this->faker->unique()->randomElement(['admin','gerant', 'caissier', 'serveur', 'cuisinier']),
+            'guard_name' => 'web',
             'created_at' => now(),
             'updated_at' => now(),
         ];
